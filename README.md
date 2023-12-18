@@ -54,3 +54,4 @@ terraform apply
 * [Deploy HCP Consul with EC2 using Terraform](https://developer.hashicorp.com/consul/tutorials/cloud-deploy-automation/consul-end-to-end-ec2)
 * [Get started with end-to-end deployment configuration](https://developer.hashicorp.com/consul/tutorials/cloud-deploy-automation/consul-end-to-end-overview)
 * [HashiCorp Cloud Platform (HCP) Provider](https://registry.terraform.io/providers/hashicorp/hcp/latest/docs)
+* [learn-consul-terraform/](https://github.com/hashicorp/learn-consul-terraform)

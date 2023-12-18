@@ -32,7 +32,7 @@ output "consul_root_token_secret_id" {
 }
 
 output "consul_cluster_id" {
-  value = hcp_consul_cluster.partner_hcp.id
+  value = hcp_consul_cluster.partner_hcp.cluster_id
 }
 
 output "consul_region" {
@@ -42,3 +42,4 @@ output "consul_region" {
 output "aws_security_group_id" {
   value = aws_security_group.hcp_consul.id
 }
+

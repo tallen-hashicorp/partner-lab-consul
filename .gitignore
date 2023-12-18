@@ -34,3 +34,5 @@ override.tf.json
 terraform.rc
 
 notes.md
+consul-client
+consul-client.pub

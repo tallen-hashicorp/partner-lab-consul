@@ -1,6 +1,12 @@
 # Copyright (c) HashiCorp, Inc.
 # SPDX-License-Identifier: MPL-2.0
 
+variable "instance_count" {
+  type = number
+  description = "value for EC2 instance count"
+  default = 1
+}
+
 variable "vpc_id" {
   type        = string
   description = "AWS VPC ID"

@@ -8,11 +8,12 @@ module "consul" {
   source = "./hcp_consul_vpc"
 }
 
-# module "ec2_instance" {
-#   source = "./datacenter-deploy-ec2-hcp"
-#   vpc_id = consul.vpc_id
-#   vpc_cidr_block = consul.vpc_cidr_block
-#   subnet_id = consul.vpc_subnet_id
-#   cluster_id = consul.consul_cluster_id
-#   hcp_consul_security_group_id = consul.hcp_consul_security_group_id
-# }
+module "ec2_instance" {
+  instance_count = 1
+  source = "./datacenter-deploy-ec2-hcp"
+  vpc_id = module.consul.vpc_id
+  vpc_cidr_block = module.consul.vpc_cidr_block
+  subnet_id = module.consul.vpc_subnet_id
+  cluster_id = module.consul.consul_cluster_id
+  hcp_consul_security_group_id = module.consul.aws_security_group_id
+}

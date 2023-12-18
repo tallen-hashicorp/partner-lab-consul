@@ -48,10 +48,10 @@ data "aws_ami" "ubuntu" {
 }
 
 // Key pair
-resource "aws_key_pair" "consul_client" {
-  key_name   = "${var.cluster_id}-consul-client"
-  public_key = file("./consul-client.pub")
-}
+# resource "aws_key_pair" "consul_client" {
+#   key_name   = "${var.cluster_id}-consul-client"
+#   public_key = file("./consul-client.pub")
+# }
 
 // Security groups
 resource "aws_security_group" "allow_ssh" {
@@ -75,7 +75,7 @@ resource "aws_security_group" "allow_ssh" {
 
 // Consul client instance
 resource "aws_instance" "consul_client" {
-  count                       = 1
+  count                       = var.instance_count
   ami                         = data.aws_ami.ubuntu.id
   instance_type               = "t2.small"
   associate_public_ip_address = true
@@ -84,7 +84,7 @@ resource "aws_instance" "consul_client" {
     var.hcp_consul_security_group_id,
     aws_security_group.allow_ssh.id
   ]
-  key_name = aws_key_pair.consul_client.key_name
+  # key_name = aws_key_pair.consul_client.key_name
 
   user_data = templatefile("${path.module}/scripts/user_data.sh", {
     setup = base64gzip(templatefile("${path.module}/scripts/setup.sh", {
