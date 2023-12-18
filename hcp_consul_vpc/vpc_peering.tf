@@ -42,3 +42,12 @@ resource "aws_route" "peer_route" {
   destination_cidr_block    = hcp_hvn.partner_hvn.cidr_block
   vpc_peering_connection_id = hcp_aws_network_peering.peer.provider_peering_id
 }
+
+resource "aws_subnet" "peer_subnet" {
+  vpc_id     = aws_vpc.peer.id
+  cidr_block = "172.31.0.0/24"
+
+  tags = {
+    Name = "Consul"
+  }
+}

@@ -30,3 +30,15 @@ output "consul_cluster_id" {
 output "consul_region" {
   value = module.consul.consul_region
 }
+
+output "vpc_cidr_block" {
+  value = module.consul.vpc_cidr_block
+}
+
+output "vpc_subnet_id" {
+  value = module.consul.vpc_subnet_id
+}
+
+output "aws_security_group_id" {
+  value = module.consul.aws_security_group_id
+}

@@ -13,3 +13,4 @@ resource "hcp_consul_cluster" "partner_hcp" {
   tier            = "standard"
   public_endpoint = true
 }
+
