@@ -21,7 +21,7 @@ The primary purpose of this Terraform configuration is to automate the deploymen
 
 ### HashiCorp Cloud Platform (HCP) Cluster Setup
 
-The following should be setup from the HCP-Internal-Consul module
+The following will be created using the HCP-Internal-Consul module
 
 1. **HCP Consul Cluster:** Ensure that a HashiCorp Consul Service cluster is provisioned and running on HashiCorp Cloud Platform (HCP). The script assumes the availability of a functioning Consul cluster.
 
