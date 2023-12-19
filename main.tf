@@ -5,7 +5,9 @@ provider "hcp" {
 }
 
 module "consul" {
-  source = "./hcp_consul_vpc"
+  source        = "./hcp_consul_vpc"
+  hvn_id        = "gft-partner-hvn"
+  cluster_id    = "gft-patner-hcp-consul"
 }
 
 module "ec2_instance" {
