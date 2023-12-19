@@ -6,9 +6,53 @@ This Terraform script facilitates the deployment of EC2 instances within an exis
 
 The primary purpose of this Terraform configuration is to automate the deployment of EC2 instances that can serve as clients within an established HCP Consul environment. These instances are configured to connect to the existing Consul cluster, promoting a simplified and standardized approach to infrastructure provisioning.
 
+## Components
+
+### AWS Resources
+- **EC2 Instances:** Deployed instances tailored for connecting to the HCP Consul cluster.
+- **Security Group:** Allows SSH inbound traffic to the EC2 instances.
+- **VPC and Subnet:** Networking components necessary for EC2 deployment.
+
+### HashiCorp Cloud Platform (HCP) Resources
+- **Consul Cluster:** Retrieves information about the existing HCP Consul cluster.
+- **Consul Root Token:** Fetches the root ACL token, ensuring secure communication with Consul.
+
 ## Requirements
 
-No specific requirements.
+### HashiCorp Cloud Platform (HCP) Cluster Setup
+
+The following should be setup from the HCP-Internal-Consul module
+
+1. **HCP Consul Cluster:** Ensure that a HashiCorp Consul Service cluster is provisioned and running on HashiCorp Cloud Platform (HCP). The script assumes the availability of a functioning Consul cluster.
+
+2. **Consul Cluster ID (cluster_id):** Identify the unique identifier for the HCP Consul cluster to which the EC2 instances will connect. This is a required input for the Terraform script.
+
+### AWS Environment Setup
+
+3. **AWS Account:** Access to an AWS account with the necessary permissions to create EC2 instances, security groups, VPC components, and establish VPC peering connections.
+
+4. **AWS VPC and Subnet:** Define the AWS VPC and subnet details where the EC2 instances will be deployed. The script requires VPC and subnet IDs as inputs.
+
+5. **AWS Security Group:** Set up an AWS Security Group allowing inbound SSH traffic to the EC2 instances. The security group ID is a required input.
+
+6. **AWS Credentials:** Ensure that AWS credentials are configured either through environment variables, AWS CLI profiles, or other preferred methods.
+
+### VPC Peering Setup
+
+7. **VPC Peering Connection:** Establish VPC peering connections between the VPC hosting the HCP Consul cluster and the VPC where the EC2 instances will be deployed. Ensure the necessary route table entries for seamless communication.
+
+### Recommended Environment Variables
+
+To enhance configurability and security, consider using environment variables for sensitive information:
+
+- `TF_VAR_cluster_id`: HCP Consul cluster ID.
+- `TF_VAR_hcp_consul_security_group_id`: AWS Security group ID for HCP Consul.
+- `TF_VAR_instance_count`: Number of EC2 instances to deploy.
+- `TF_VAR_subnet_id`: AWS subnet ID for EC2 deployment.
+- `TF_VAR_vpc_cidr_block`: CIDR block for the AWS VPC.
+- `TF_VAR_vpc_id`: AWS VPC ID.
+
+Ensure these environment variables are set or exported before running the Terraform script.
 
 ## Providers
 
